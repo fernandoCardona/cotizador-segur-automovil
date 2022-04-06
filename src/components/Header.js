@@ -1,6 +1,9 @@
 import React from 'react';
 //2.0-instalamos Style Components (import styled from '@emotion/styled') y lo importamos:
 import styled from '@emotion/styled'
+//11.0-Importamos PropTypes al componente Header:
+import PropTypes from 'prop-types';
+
 
 //2.1-creamos una cosntante Header y h1 para Style Components
 const ContenedorHeader = styled.header`
@@ -26,5 +29,9 @@ const Header = ({titulo}) => (
     
 );
 
- 
+
+//11.1-Creamos los PropTypes del componente Header:
+Header.propTypes = {
+    titulo: PropTypes.string.isRequired
+}
 export default Header;

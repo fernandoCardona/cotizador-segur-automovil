@@ -1,10 +1,10 @@
 //5.0-Creamos un archivo helper.js 
 //5.1-creamos una funcion obtenerdiferenciaYear para obtener la diferencia de años 
-export function obtenerDiferenciaYear(year) {
+export function obtenerDiferenciaYear( year ) {
     return new Date().getFullYear() - year;
 }
 //5.2-creamos una funcion calcularMarca para calcular segun la marca
-export function calcularMarca(marca) {
+export function calcularMarca( marca ) {
     let incremento;
 
     switch(marca) {
@@ -29,3 +29,9 @@ export function calcularMarca(marca) {
 export function obtenerPlan( plan ) {
     return (plan === 'basico') ? 1.20 : 1.50;
 }
+
+
+//7.3-Creamos un script en helper para transformar la Primera letar en mayusculas 
+export function primeraMayusculas( texto ){
+        return texto.charAt(0).toUpperCase() + texto.slice(1);
+ }

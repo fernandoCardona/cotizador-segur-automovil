@@ -6,7 +6,9 @@ import Formulario from './components/Formulario';
 //7.0-importamos el componente Resumen 
 import Resumen from './components/Resumen';
 //8.0-importamos el componente Resultado  
-import Resultado from './components/Resultado';
+import Resultado from './components/Resultado'; 
+//8.0-importamos el componente Spinner  
+import Spinner from './components/Spinner'; 
 
 //2.0-instalamos Style Components (import styled from '@emotion/styled') y lo importamos:
 import styled from '@emotion/styled'
@@ -37,7 +39,8 @@ function App() {
  //extraer datos
  const { cotizacion, datos } = resumen;
 
-  //const [ cargando, guardarCargando] = useState(false);
+  //10.2-Creamops un State para El Spinner creamos un ternario con 'cargando' y 'guardarCargando' lo agregamos a los props de la etiqueta formulario y tambien se lo pasamos como argumenta al componente formulario en formulario.js
+  const [ cargando, guardarCargando] = useState(false);
 
 
   return (
@@ -47,9 +50,16 @@ function App() {
       <Header titulo='Cotizador de Seguros'/>
 
       <ContenedorFormulario>
-        <Formulario guardarResumen={guardarResumen} />
+        <Formulario guardarResumen={guardarResumen} guardarCargando={guardarCargando}/>
+         
+         {cargando ? <Spinner /> : null}
 
          <Resumen datos={datos} cotizacion={cotizacion} /> 
+         { !cargando  ?
+                <Resultado 
+                  cotizacion={cotizacion}
+                /> : null
+            }
          
       </ContenedorFormulario>
 

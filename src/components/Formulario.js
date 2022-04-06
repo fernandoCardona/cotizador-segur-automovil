@@ -3,6 +3,8 @@ import React, {useState} from 'react'
 import styled from '@emotion/styled'
 //5.2-Importamos el archivo helper.js
 import { obtenerDiferenciaYear, calcularMarca, obtenerPlan } from '../helper'
+//11.0-Importamos PropTypes al componente Formulario:
+import PropTypes from 'prop-types';
 
 //3.2-Con Style components creamos los estilos de las diferentes elementos del Formulario
 const Campos = styled.div`
@@ -55,7 +57,7 @@ const Error = styled.div`
                 
 
 
-const Formulario = ({guardarResumen}) => {
+const Formulario = ({guardarResumen, guardarCargando}) => {
     //4.0- Creamos el useState agregandolo al import de React y lo declaramos:
     const [datos, guardarDatos] = useState({
         marca: '',
@@ -105,16 +107,21 @@ const Formulario = ({guardarResumen}) => {
         //console.log(resultado);
 
         //Total
-         
+        // guardarCargando pasa true 
+        guardarCargando(true);
+
+        //creamos un setimeout de 3 segundos para pasar los datos con un retardo de 3 segundos y que se vea el Spinner y depues guardarCargando pasa a false al pasarle datos 
+        setTimeout(() => {
 
             // Elimina el spinner
-            //guardarCargando(false);
+            guardarCargando(false);
 
             // pasa la información al componente principal
             guardarResumen({
                 cotizacion: Number(resultado),
                 datos
             });
+        }, 3000);
         
     }
     //4.4-Creamos un state para guardar el error en caso de que ocurra: Dentro de la etiqueta Form introducimos un ternario para enseñar el mensaje de Error en caso de que haya campos vacios:
@@ -176,7 +183,11 @@ const Formulario = ({guardarResumen}) => {
                                                                                                 </form>
     );
 }
- 
+//11.1-Creamos los PropTypes del componente Formulario:
+Formulario.propTypes = {    
+    guardarResumen: PropTypes.func.isRequired,
+    guardarCargando: PropTypes.func.isRequired
+} 
 export default Formulario;
 
     
